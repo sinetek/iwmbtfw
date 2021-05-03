@@ -222,7 +222,7 @@ iwmbt_patch_fwfile(struct libusb_device_handle *hdl,
 			fw_job.len -= evt_length;
 
 			if (skip_patch == 0) {
-				iwmbt_hci_command(hdl,
+				ret = iwmbt_hci_command(hdl,
 				    (struct iwmbt_hci_cmd *)cmd_buf,
 				    evt_buf,
 				    IWMBT_HCI_MAX_EVENT_SIZE,
@@ -341,7 +341,6 @@ int
 iwmbt_enter_manufacturer(struct libusb_device_handle *hdl)
 {
 	int ret, transferred;
-	struct iwmbt_hci_event_cmd_compl*event;
 	static struct iwmbt_hci_cmd cmd = {
 		.opcode = htole16(0xfc11),
 		.length = 2,
@@ -370,7 +369,6 @@ int
 iwmbt_exit_manufacturer(struct libusb_device_handle *hdl, int mode)
 {
 	int ret, transferred;
-	struct iwmbt_hci_event_cmd_compl*event;
 	static struct iwmbt_hci_cmd cmd = {
 		.opcode = htole16(0xfc11),
 		.length = 2,
