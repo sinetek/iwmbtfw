@@ -51,7 +51,7 @@
 
 int	iwmbt_do_debug = 0;
 int	iwmbt_do_info = 0;
-int	iwmbt_use_old_method = 0;
+static int	iwmbt_use_old_method = 0;
 
 struct iwmbt_devid {
 	uint16_t product_id;
